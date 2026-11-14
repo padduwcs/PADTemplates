@@ -1,6 +1,6 @@
-# LaTeX Templates
+# PADTemplates
 
-Các mẫu LaTeX dùng độc lập trên Windows, macOS và Linux.
+**Preconfigured Academic Document Templates** — Các mẫu LaTeX dùng độc lập trên Windows, macOS và Linux.
 
 ## Cài nhanh
 
@@ -50,7 +50,7 @@ Nếu không có lệnh `code`, tìm **LaTeX Workshop** của James Yu trong Ext
 
 ## Bắt đầu
 
-1. Clone hoặc tải ZIP, rồi sao chép **cả thư mục mẫu** ra nơi làm bài riêng.
+1. Clone bằng `git clone https://github.com/padduwcs/PADTemplates.git` hoặc tải ZIP, rồi sao chép **cả thư mục mẫu** ra nơi làm bài riêng.
 2. Mở thư mục đó trong VS Code, sửa nội dung theo README của mẫu.
 3. Lưu, chọn `main.tex`: **Ctrl + Alt + B** để build, **Ctrl + Alt + V** để xem PDF. macOS dùng **Cmd + Option + B / V**.
 
