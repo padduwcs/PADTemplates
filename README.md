@@ -4,7 +4,7 @@ Bộ sưu tập template LaTeX cho báo cáo, slide và bài báo, kèm cấu h�
 
 ## Bắt đầu
 
-1. Cài môi trường theo [hướng dẫn cài đặt](docs/installation.md). Cấu hình Windows dùng **VS Code + MiKTeX + Strawberry Perl + LaTeX Workshop**.
+1. Làm theo [hướng dẫn cài đặt](docs/installation.md). Nếu máy đã có một phần môi trường, giữ các công cụ đang hoạt động và chỉ bổ sung phần thiếu. Cấu hình Windows được hướng dẫn dùng **VS Code + MiKTeX + Strawberry Perl + LaTeX Workshop**; cũng có thể dùng bộ TeX Live sẵn có.
 2. Clone repo hoặc tải ZIP, rồi mở thư mục repo bằng VS Code.
 3. Chạy kiểm tra trong PowerShell tại thư mục repo:
 

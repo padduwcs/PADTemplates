@@ -2,6 +2,28 @@
 
 Mục tiêu: soạn tiếng Việt trong VS Code, build bằng `latexmk`, xem PDF ngay trong editor và giữ mọi file sinh ra trong `build/`.
 
+## Nếu máy đã có một phần môi trường
+
+Giữ các thành phần đang hoạt động và chỉ bổ sung phần thiếu. Sau khi clone hoặc giải nén repo, chạy trong PowerShell tại thư mục repo:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\check-environment.ps1
+```
+
+Script báo công cụ còn thiếu, thử chạy `latexmk` và kiểm tra một số package. Nếu thiếu công cụ bắt buộc, script dừng với thông báo để bạn bổ sung rồi chạy lại; nó không gỡ, cài lại hoặc thay đổi phần mềm đã có.
+
+| Máy đã có | Việc cần làm |
+| --- | --- |
+| VS Code | Dùng tiếp; kiểm tra đã cài LaTeX Workshop trong Extensions |
+| MiKTeX hoặc TeX Live đang chạy được | Dùng bộ TeX hiện tại, bổ sung `latexmk` hoặc package còn thiếu bằng trình quản lý của bộ đó |
+| `latexmk -v` chạy thành công | Không cần cài thêm Perl chỉ vì không có lệnh `perl` riêng trong PATH |
+| Có bộ TeX nhưng thiếu package của mẫu | Cài package còn thiếu; không cần cài lại toàn bộ bộ TeX |
+| Có phần mềm nhưng lệnh chưa được nhận | Mở terminal mới và kiểm tra PATH trước khi quyết định cài lại |
+
+TeX Live trên Windows có Perl đi kèm cho các script của bộ TeX; xem [tài liệu TeX Live](https://tug.org/texlive/doc/texlive-en/texlive-en.pdf). Script kiểm tra dùng kết quả chạy `latexmk` để xác định nhu cầu Perl, thay vì bắt buộc một bản Perl cài riêng.
+
+Khi công cụ đã sẵn sàng, chạy `scripts/build-all.ps1` theo bước build thử bên dưới. Build thành công các mẫu là bước xác nhận cuối cùng. Cấu hình `.vscode/` của repo áp dụng cho workspace này, không thay đổi thiết lập VS Code toàn máy.
+
 ## Windows: cấu hình đang dùng cho repo
 
 | Thành phần | Vai trò | Nguồn cài |
@@ -24,9 +46,9 @@ Cài VS Code bằng User Installer; bật tùy chọn thêm vào PATH để dùn
 
 Build lần đầu cần Internet nếu máy chưa có đủ package. Các bước này dựa trên [hướng dẫn cài MiKTeX](https://miktex.org/howto/install-miktex) và [hướng dẫn MiKTeX Console](https://miktex.org/howto/miktex-console).
 
-### 3. Cài Strawberry Perl
+### 3. Cài Strawberry Perl khi cần
 
-Cài bản phù hợp từ trang Strawberry Perl, rồi mở terminal mới. `perl` phải có trong PATH. MiKTeX không kèm Perl, trong khi recipe `latexmk` cần Perl để chạy; xem [yêu cầu của LaTeX Workshop](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install).
+Nếu `latexmk -v` chạy được, bỏ qua bước này. Với MiKTeX chưa có Perl, cài bản phù hợp từ trang Strawberry Perl rồi mở terminal mới để nhận PATH. MiKTeX không kèm Perl, trong khi recipe `latexmk` cần Perl để chạy; xem [yêu cầu của LaTeX Workshop](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install).
 
 ### 4. Cài LaTeX Workshop
 
@@ -45,9 +67,10 @@ Repo và mỗi template đều có `.vscode/extensions.json` để VS Code đề
 ```powershell
 pdflatex --version
 latexmk -v
-perl -v
 bibtex --version
 ```
+
+Nếu dùng Perl cài riêng, có thể kiểm tra thêm bằng `perl -v`. Với bộ TeX có Perl đi kèm, kết quả `latexmk -v` mới quyết định có cần bổ sung Perl hay không.
 
 Mở thư mục repo và chạy:
 
@@ -55,7 +78,7 @@ Mở thư mục repo và chạy:
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\check-environment.ps1
 ```
 
-Script kiểm tra công cụ và một số package quan trọng. Nó không cài hoặc thay đổi phần mềm. Nếu thiếu `latexmk`, mở mục Packages của MiKTeX Console và cài package `latexmk`.
+Script kiểm tra công cụ và một số package quan trọng. Nó không cài hoặc thay đổi phần mềm, và không kiểm tra trực tiếp việc cài LaTeX Workshop; kiểm tra extension trong VS Code. Nếu thiếu `latexmk`, cài package `latexmk` bằng trình quản lý của bộ TeX hiện tại; với MiKTeX, mở mục Packages của MiKTeX Console.
 
 `-ExecutionPolicy Bypass` chỉ áp dụng cho tiến trình PowerShell đang chạy lệnh; không thay đổi chính sách toàn máy.
 

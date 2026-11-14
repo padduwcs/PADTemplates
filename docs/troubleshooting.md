@@ -2,7 +2,7 @@
 
 ## Không tìm thấy `latexmk`, `pdflatex` hoặc `perl`
 
-Đóng rồi mở lại VS Code sau khi cài. Chạy `Get-Command latexmk,pdflatex,perl` trong PowerShell để xem PATH. Nếu thiếu `latexmk`, cài package `latexmk` bằng MiKTeX Console. Nếu thiếu Perl trên Windows dùng MiKTeX, cài Strawberry Perl theo [hướng dẫn cài đặt](installation.md).
+Đóng rồi mở lại VS Code sau khi cài. Chạy `Get-Command latexmk,pdflatex` trong PowerShell để xem PATH. Nếu thiếu `latexmk`, cài package `latexmk` bằng trình quản lý của bộ TeX hiện tại. Nếu dùng MiKTeX và `latexmk` báo thiếu Perl, cài Strawberry Perl theo [hướng dẫn cài đặt](installation.md). Nếu `latexmk -v` đã chạy được, không cần cài Perl riêng chỉ vì `perl` không nằm trong PATH.
 
 ## PowerShell không cho chạy script
 

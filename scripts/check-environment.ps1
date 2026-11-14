@@ -4,7 +4,7 @@ param()
 
 $ErrorActionPreference = 'Stop'
 $missingTools = @()
-foreach ($tool in @('pdflatex', 'latexmk', 'perl', 'bibtex', 'kpsewhich')) {
+foreach ($tool in @('pdflatex', 'latexmk', 'bibtex', 'kpsewhich')) {
     $command = Get-Command $tool -ErrorAction SilentlyContinue
     if ($command) {
         Write-Host "[OK] $tool : $($command.Source)"
@@ -13,6 +13,13 @@ foreach ($tool in @('pdflatex', 'latexmk', 'perl', 'bibtex', 'kpsewhich')) {
         Write-Host "[MISSING] $tool"
         $missingTools += $tool
     }
+}
+$perlCommand = Get-Command perl -ErrorAction SilentlyContinue
+if ($perlCommand) {
+    Write-Host "[OK] perl : $($perlCommand.Source)"
+}
+else {
+    Write-Host '[INFO] No separate perl command in PATH; checking whether latexmk can use its own runtime.'
 }
 foreach ($tool in @('code', 'git')) {
     if (Get-Command $tool -ErrorAction SilentlyContinue) {
@@ -36,8 +43,10 @@ finally {
     $ErrorActionPreference = $savedPreference
 }
 if ($latexmkExitCode -ne 0) {
-    throw 'latexmk could not run. Check Perl and the LaTeX distribution in PATH.'
+    $versionOutput | ForEach-Object { Write-Host ([string]$_) }
+    throw 'latexmk could not run. Check its error output, Perl and the LaTeX distribution in PATH. See docs/installation.md.'
 }
+Write-Host '[OK] latexmk can run; no additional Perl installation is required for this check.'
 $versionOutput | ForEach-Object { [string]$_ } |
     Where-Object { $_ -match '^Latexmk.*Version' } |
     ForEach-Object { Write-Host "[OK] $_" }
@@ -53,5 +62,11 @@ foreach ($packageFile in @('vietnam.sty', 'vietnamese.ldf', 't5enc.def', 'algori
         $missingPackages++
     }
 }
-Write-Host "`nToolchain is ready. Missing package checks: $missingPackages."
-Write-Host 'MiKTeX can install missing packages at first build. Run scripts/build-all.ps1 to verify every template.'
+if ($missingPackages -gt 0) {
+    Write-Host "`n[ACTION] $missingPackages sampled package file(s) are missing."
+    Write-Host 'Install missing packages with your current TeX distribution. MiKTeX can install them at first build.'
+}
+else {
+    Write-Host "`n[OK] All sampled package files are installed."
+}
+Write-Host 'Check LaTeX Workshop in VS Code Extensions, then run scripts/build-all.ps1 to verify every template.'
