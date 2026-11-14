@@ -1,0 +1,70 @@
+% =============================================================
+% TEMPLATE BÁO CÁO (kèm slide) - HCMUS
+% Thông tin môn học, đề tài, nhóm: sửa trong config/info.tex.
+% Nội dung báo cáo: viết trong content/. Slide: slides.tex.
+% Biên dịch: nút xanh trong VS Code, hoặc latexmk -pdf main.tex
+% =============================================================
+\documentclass[12pt]{article}
+
+\usepackage{hcmus-report-template}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{array}
+\captionsetup{justification=centering}
+\setlength{\textfloatsep}{10pt}
+\setlength{\floatsep}{10pt}
+\usetikzlibrary{shapes, arrows, positioning, matrix, decorations.pathreplacing}
+
+\usepackage[algo2e,ruled,vlined]{algorithm2e}
+\DontPrintSemicolon
+\SetAlFnt{\small}
+\SetKwComment{tcp}{// }{}
+\SetAlgorithmName{Thuật toán}{thuật toán}{Danh sách thuật toán}
+\SetKwInput{KwIn}{Đầu vào}
+\SetKwInput{KwOut}{Đầu ra}
+\renewcommand{\lstlistingname}{Mã nguồn}
+\usepackage{amsmath}
+
+\setlength{\parindent}{0pt}
+\renewcommand{\baselinestretch}{1.5}   % giãn dòng (1 = dòng đơn)
+\setlength{\hfuzz}{20pt}
+\emergencystretch=3em
+
+\input{config/info}
+\AtBeginDocument{\renewcommand{\refname}{Tài liệu tham khảo}}
+
+\lhead{\reporttitle: \reportname}
+\rhead{
+\university\ -- ĐHQG HCM\\
+\coursename
+}
+
+\begin{document}
+
+% ---- Bìa, mục lục ----
+\hypersetup{pageanchor=false}
+\input{content/title}
+
+\pagenumbering{roman}
+{\linespread{1}\selectfont\tableofcontents}
+\clearpage
+
+\hypersetup{pageanchor=true}
+\pagenumbering{arabic}
+
+% ---- Nội dung (đánh số mục) ----
+% Muốn thêm chương: tạo file mới trong content/ rồi thêm một dòng \input tương ứng.
+\input{content/general}
+\input{content/introduction}
+\input{content/theory}
+\input{content/implementation}
+\input{content/conclusion}
+
+% ---- Tài liệu tham khảo ----
+\clearpage
+\input{config/references}
+
+\end{document}

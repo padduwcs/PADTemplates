@@ -1,0 +1,46 @@
+name: Build templates
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "templates/**"
+      - "scripts/**"
+      - ".github/workflows/build-templates.yml"
+  pull_request:
+    paths:
+      - "templates/**"
+      - "scripts/**"
+      - ".github/workflows/build-templates.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - name: Install TeX toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends -y \
+            latexmk texlive-latex-extra texlive-lang-other \
+            texlive-science texlive-publishers texlive-fonts-recommended \
+            texlive-fonts-extra
+
+      - name: Build every registered document
+        shell: pwsh
+        run: ./scripts/build-all.ps1
+
+      - name: Upload PDF previews
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: template-pdfs
+          path: templates/**/build/*.pdf
+          if-no-files-found: error
+          retention-days: 14

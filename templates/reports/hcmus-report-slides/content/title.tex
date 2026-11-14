@@ -1,0 +1,31 @@
+% Trang bìa. Thông tin lấy từ config/info.tex.
+\begin{titlepage}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\linespread{1}\selectfont   % bìa dùng giãn dòng đơn để vừa một trang
+\centering
+
+{\LARGE \MakeUppercase{\nationaluni}}\\[0.5cm]
+{\Large \MakeUppercase{\university}}\\[0.5cm]
+{\large \MakeUppercase{\faculty}}\\[0.5cm]
+
+\HRule \\[0.4cm]
+{
+\huge{\bfseries{\reporttitle}}\\[0.5cm]
+\large{\bfseries{Đề tài: \reportname}}
+}\\[0.4cm]
+\HRule \\[0.5cm]
+
+\textbf{\large Môn học: \coursename}\\[0.7cm]
+
+{\large
+\begin{tabular}{rl}
+\textbf{Sinh viên thực hiện:} & \begin{tabular}[t]{@{}l@{}}\studentlist\end{tabular} \\[0.3cm]
+\textbf{Giảng viên hướng dẫn:} & \teachername \\
+\end{tabular}}\\[1cm]
+
+{\large \reportdate}\\[1cm]
+
+\IfFileExists{images/hcmus-logo.png}{\includegraphics[scale=.35]{images/hcmus-logo.png}\\[1cm]}{\vspace{1cm}}
+
+\vfill
+\end{titlepage}

@@ -1,0 +1,118 @@
+% Paper template (Springer LNCS). Build: Ctrl+Alt+B trong VS Code, hoặc latexmk -pdf main.tex
+% Ảnh đặt trong images/, chèn bằng \includegraphics{ten-anh.png}
+\documentclass[runningheads]{llncs}
+
+% ---------- Encoding & fonts ----------
+\usepackage[T1]{fontenc}
+
+% ---------- Graphics, figures, colors ----------
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{pict2e}
+
+% ---------- Math & algorithms ----------
+\usepackage{amsmath}
+\usepackage[H]{algorithm}
+\usepackage[noend]{algpseudocode}
+
+% ---------- Symbols ----------
+\usepackage[misc,geometry]{ifsym}   % \Letter
+
+% ---------- Hyperref ----------
+\usepackage{hyperref}
+\renewcommand\UrlFont{\color{blue}\rmfamily}
+
+% ---------- ORCID icon ----------
+\newsavebox{\ORCIDlogo}
+\savebox{\ORCIDlogo}{%
+  \setlength{\unitlength}{\dimexpr 1em/256\relax}%
+  \begin{picture}(256,256)%
+    \color[HTML]{A6CE39}\put(128,128){\circle*{256}}%
+    \color{white}%
+    \put(78.6,199.2){\circle*{20}}%
+    \moveto(70.9,176.9)\lineto(86.3,176.9)\lineto(86.3,69.8)\lineto(70.9,69.8)%
+    \closepath\fillpath%
+    \moveto(108.9,176.9)\lineto(150.5,176.9)%
+    \curveto(190.1,176.9)(207.5,148.6)(207.5,123.3)%
+    \curveto(207.5,95.8)(186,69.7)(150.7,69.7)%
+    \lineto(108.9,69.7)%
+    \closepath\fillpath%
+    \color[HTML]{A6CE39}%
+    \moveto(124.3,83.6)\lineto(148.8,83.6)%
+    \curveto(183.7,83.6)(191.7,110.1)(191.7,123.3)%
+    \curveto(191.7,144.8)(178,163)(148,163)%
+    \lineto(124.3,163)%
+    \closepath\fillpath%
+  \end{picture}%
+}
+\newcommand\orcidicon[1]{\href{https://orcid.org/#1}{\usebox{\ORCIDlogo}}}
+
+% ---------- Layout tweaks ----------
+\raggedbottom
+\renewcommand{\labelitemi}{$\bullet$}
+
+\begin{document}
+
+\title{Paper Title}
+\titlerunning{Short Title}
+
+\author{
+First Author\inst{1} \orcidicon{0000-0000-0000-0000} \and
+Second Author\inst{1,2} \orcidicon{0000-0000-0000-0000} \and
+Third Author\inst{2} (\Letter) \orcidicon{0000-0000-0000-0000}
+}
+
+\authorrunning{First Author et al.}
+% First names are abbreviated in the running head.
+% If there are more than two authors, 'et al.' is used.
+
+\institute{
+First Institution, City, Country
+\and
+Second Institution, City, Country
+\email{first.author@example.com}\\
+\email{\{second.author,third.author\}@example.com}
+}
+
+\maketitle
+
+\begin{abstract}
+Abstract text.
+
+\keywords{Keyword one \and Keyword two \and Keyword three}
+\end{abstract}
+
+\section{Introduction}
+Text with a citation~\cite{example}.
+
+\section{Related Work}
+\subsection{First Topic}
+Text.
+
+\subsection{Second Topic}
+Text.
+
+\section{Method}
+Text.
+
+\section{Experiments}
+\subsection{Datasets}
+Text.
+
+\subsection{Results}
+Text.
+
+\section{Conclusion}
+Text.
+
+\section*{Acknowledgement}
+Funding and acknowledgements.
+
+\bibliographystyle{splncs04}
+\bibliography{references}
+
+\end{document}

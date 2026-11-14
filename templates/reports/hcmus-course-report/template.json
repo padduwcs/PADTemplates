@@ -1,0 +1,9 @@
+{
+  "id": "hcmus-course-report",
+  "name": "Báo cáo môn học HCMUS",
+  "description": "Báo cáo có bìa, lời nói đầu, tóm tắt, mục lục và phụ lục.",
+  "category": "reports",
+  "language": "vi",
+  "engine": "pdflatex",
+  "entrypoints": ["main.tex"]
+}

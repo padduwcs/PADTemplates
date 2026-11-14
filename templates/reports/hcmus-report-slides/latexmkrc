@@ -1,0 +1,9 @@
+# Standalone configuration: run latexmk from this template's directory.
+use Cwd qw(cwd);
+$out_dir = 'build';
+$aux_dir = $out_dir;
+$pdf_mode = 1;  # pdfLaTeX
+$pdflatex = 'pdflatex -synctex=1 %O %S';
+
+# BibTeX runs in build/; references.bib lives in the project root.
+ensure_path('BIBINPUTS', cwd());

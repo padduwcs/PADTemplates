@@ -1,0 +1,44 @@
+% Trang bìa. Thông tin môn học/đề tài lấy từ main.tex.
+% Chỉ cần sửa danh sách giảng viên và sinh viên bên dưới.
+\newgeometry{top=2cm,bottom=2cm,left=1.5cm,right=1.5cm,marginparwidth=2cm}
+\pagenumbering{roman}   % bìa đánh số La Mã (không hiện) để mã neo trang không trùng với trang 1
+\begin{titlepage}
+    \linespread{1}\selectfont
+    \begin{center}
+        % Tên trường
+        \leavevmode
+        \normalfont
+        {\LARGE \MakeUppercase{\head}}\\[0.3cm]
+        {\Large \MakeUppercase{\university}}\\[0.3cm]
+        {\large \MakeUppercase{\faculty}}
+        \vskip 1cm
+        % Logo trường
+        \includegraphics[scale=0.2]{images/hcmus-logo.png}
+        \vspace{1cm}
+
+        \textbf{\huge \subjectname\ (\subjectcode)}\\[.3cm]
+        \rule{\linewidth}{0.5mm}\\[.3cm]
+        \textbf{\Large \reportname}\\[1.5cm]
+        \textbf{\LARGE \reporttitle}\\[.3cm]
+        \rule{\linewidth}{0.5mm}
+        \\[.8cm]
+        % Lớp và học kỳ (xoá dòng này nếu không cần)
+        {\large Lớp: \classname \quad -- \quad \semester}
+        \vfill
+
+        % Giảng viên và sinh viên (mỗi người một dòng; thêm/bớt tuỳ ý)
+        \begin{tabular}{r@{\hspace{1em}}l@{\hspace{1.5em}}l}
+            \large \emph{Giảng viên hướng dẫn:} & \large Họ và tên giảng viên 1 & \\
+            & \large Họ và tên giảng viên 2 & \\[1.2em]
+            \large \emph{Sinh viên thực hiện:} & \large Họ và tên sinh viên 1 & \large (MSSV) \\
+            & \large Họ và tên sinh viên 2 & \large (MSSV) \\
+            & \large Họ và tên sinh viên 3 & \large (MSSV) \\
+        \end{tabular}
+        \vfill
+
+        % Ngày tháng
+        {\small \reportdate}
+    \end{center}
+\end{titlepage}
+\restoregeometry
+\pagenumbering{arabic}

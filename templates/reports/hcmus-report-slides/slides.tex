@@ -1,0 +1,61 @@
+% =============================================================
+% SLIDE (beamer). Thông tin lấy từ config/info.tex.
+% Biên dịch: latexmk -pdf slides.tex (hoặc chọn slides.tex rồi bấm nút xanh)
+% =============================================================
+\documentclass[aspectratio=169,11pt]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{seahorse}
+\usefonttheme{professionalfonts}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption}[numbered]
+
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usetikzlibrary{arrows.meta, positioning, calc, shapes.geometric}
+
+\input{config/info}
+
+\title[\reporttitle]{\reporttitle: \reportname}
+\subtitle{Phụ đề (tuỳ chọn)}
+\author[\studentshort]{\studentshort}
+\institute[HCMUS]{\university\ -- ĐHQG HCM\\\coursename}
+\date{\reportdate}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Mục tiêu}
+Nội dung.
+\end{frame}
+
+\begin{frame}{Nội dung chính}
+Nội dung.
+\end{frame}
+
+\begin{frame}{Kết quả}
+Nội dung.
+\end{frame}
+
+\begin{frame}{Kết luận}
+Nội dung.
+\vfill
+\begin{center}
+\begin{tikzpicture}
+\node[draw=blue!60, fill=blue!6, rounded corners=8pt, line width=0.8pt,
+      inner xsep=1.4em, inner ysep=0.9em]
+      {\Large\bfseries Cảm ơn thầy/cô đã lắng nghe!};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,53 @@
+% =============================================================
+% TEMPLATE BÁO CÁO MÔN HỌC - HCMUS
+% Chỉ cần sửa phần THÔNG TIN BÁO CÁO bên dưới, sau đó viết nội
+% dung trong thư mục content/. Danh sách sinh viên, giảng viên
+% sửa trong config/frontpage.tex.
+% Biên dịch: nút xanh trong VS Code, hoặc latexmk -pdf main.tex
+% =============================================================
+
+% ---------------- THÔNG TIN BÁO CÁO ----------------
+\newcommand{\subjectname}{Tên môn học}            % hiện ở header và trang bìa
+\newcommand{\subjectcode}{CSC00000}               % mã môn
+\newcommand{\reportname}{BÁO CÁO ĐỒ ÁN}          % loại báo cáo: đồ án, bài tập lớn, thực hành...
+\newcommand{\reporttitle}{Chủ đề: Tên đề tài}
+\newcommand{\classname}{Tên lớp}
+\newcommand{\semester}{Học kỳ 1, năm học 2025--2026}
+\newcommand{\reportdate}{TP Hồ Chí Minh, tháng 1 năm 2026}
+
+% ---------------- THÔNG TIN TRƯỜNG ----------------
+\newcommand{\head}{Đại học Quốc gia Thành phố Hồ Chí Minh}
+\newcommand{\university}{Trường Đại học Khoa học tự nhiên}
+\newcommand{\faculty}{Khoa Công nghệ thông tin}
+
+\input{config/preamble}
+
+\begin{document}
+
+% ---- Phần đầu: bìa, lời nói đầu, tóm tắt, mục lục ----
+\input{config/frontpage}
+\input{content/preface}
+\clearpage
+\input{content/abstract}
+\clearpage
+{\linespread{1}\selectfont\tableofcontents}
+% Danh mục hình / bảng (tuỳ chọn): bỏ dấu % ở hai dòng dưới khi báo cáo có hình, bảng.
+% {\linespread{1}\selectfont\listoffigures}
+% {\linespread{1}\selectfont\listoftables}
+\clearpage
+
+% ---- Nội dung chính (đánh số mục) ----
+% Muốn thêm phần: tạo file mới trong content/ rồi thêm một dòng \input tương ứng.
+\input{content/introduction}
+\input{content/background}
+\input{content/main-content}
+\input{content/results}
+\input{content/conclusion}
+
+% ---- Phần cuối: phụ lục, tài liệu tham khảo (mỗi phần một trang) ----
+\clearpage
+\input{content/appendix}
+\clearpage
+\input{config/references}
+
+\end{document}

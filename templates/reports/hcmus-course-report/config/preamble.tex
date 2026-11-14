@@ -1,0 +1,308 @@
+% =============================================================
+% PREAMBLE: gói lệnh, header/footer, màu sắc, style code.
+% Thông tin riêng của từng báo cáo (môn học, tên đề tài, ...)
+% nằm ở main.tex, KHÔNG sửa trong file này.
+% =============================================================
+\documentclass[12pt]{article}
+
+% ---------------- Ngôn ngữ, khổ giấy, giãn dòng ----------------
+\linespread{1.3}   % giãn dòng toàn văn bản (1 = dòng đơn)
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage[a4paper,top=1in,bottom=1in,left=1.25in,right=1.25in,marginparwidth=2cm]{geometry}
+\usepackage{indentfirst}
+
+% ---------------- Toán, bảng, hình, danh sách ----------------
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[inline, shortlabels]{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+
+% ---------------- Liên kết trong PDF ----------------
+\usepackage[colorlinks = true,
+            linkcolor = black,
+            urlcolor  = orange!30!black,
+            citecolor = black,
+            anchorcolor = black]{hyperref}
+\hypersetup{pdftitle={\subjectname}}
+\addto\captionsvietnamese{\renewcommand{\refname}{Tài liệu tham khảo}}
+
+% ---------------- Header / footer ----------------
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headheight}{30pt}
+\addtolength{\topmargin}{-4pt}
+\fancyhead{}
+\fancyhead[L]{
+    \begin{tabular}{rl}
+        \begin{picture}(25,15)(0,0)
+    \put(0,-8){\includegraphics[scale = 0.025]{images/hcmus-logo.png}}
+       \end{picture}&\hspace{-.5cm}
+        \raggedleft\begin{tabular}{l}
+            \university\\
+            \faculty
+        \end{tabular}
+    \end{tabular}
+}
+\fancyhead[R]{\subjectname}
+\fancyfoot{}
+\fancyfoot[R]{Trang {\thepage}/\pageref{LastPage}}
+
+% ---------------- Màu cho code ----------------
+\definecolor{parenthesesblue}{rgb}{0.251,0.4706,0.949}
+\definecolor{codepurple}{rgb}{0.652,0.148,0.6432}
+\definecolor{stringgreen}{rgb}{0.3137,0.6314,0.3098}
+\definecolor{variableorange}{rgb}{0.597,0.4087,0.003}
+\definecolor{delimorange}{rgb}{0.7562,0.5176,0.0038}
+\definecolor{commentgray}{rgb}{0.75,0.75,0.75}
+\definecolor{backcolour}{rgb}{0.97,0.97,0.97}
+
+% ---------------- Code (listings), giả mã (algorithm2e) ----------------
+\usepackage{listings}
+\usepackage[most]{tcolorbox}
+\newtcolorbox{pseudocodebox}{
+    colback=yellow!10,
+    fonttitle=\bfseries\scshape,
+    boxrule=0pt,frame hidden,sharp corners,enhanced
+}
+\usepackage[ruled,vlined,noline]{algorithm2e}
+\makeatletter
+\def\addToLiterate#1{\edef\lst@literate{\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
+\lst@Key{add to literate}{}{\addToLiterate{#1}}
+\makeatother
+\lstdefinelanguage{pseudocode}{
+  morekeywords={function,if,then,else,while,return,for,do,end},
+  sensitive=false,
+  morecomment=[l]{//},
+  morestring=[b]"
+}
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},
+  commentstyle=\it\color{commentgray},
+  keywordstyle=\color{codepurple},
+  stringstyle=\color{stringgreen},
+  basicstyle=\ttfamily\footnotesize,
+  captionpos=b,
+  keepspaces=true,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2
+}
+\lstset{
+    language = Python,
+    style=mystyle,
+    literate=%
+	% Vần a
+		{á}{{\'a}}1
+		{à}{{\`a}}1
+		{ạ}{{\d a}}1
+		{ả}{{\h a}}1
+		{ã}{{\~ a}}1
+		%
+		{Á}{{\'A}}1
+		{À}{{\`A}}1
+		{Ạ}{{\d A}}1
+		{Ả}{{\h A}}1
+		{Ã}{{\~ A}}1
+	%
+	% Vần ă
+		{ă}{{\u a}}1
+		{ắ}{{\'\abreve }}1
+		{ằ}{{\`\abreve }}1
+		{ặ}{{\d \abreve }}1
+		{ẳ}{{\h \abreve }}1
+		{ẵ}{{\~\abreve }}1
+		%
+		{Ă}{{\u A}}1
+		{Ắ}{{\'\ABREVE }}1
+		{Ằ}{{\`\ABREVE }}1
+		{Ặ}{{\d \ABREVE }}1
+		{Ẳ}{{\h \ABREVE }}1
+		{Ẵ}{{\~\ABREVE }}1
+	%
+	% Vần â
+		{â}{{\^ a}}1
+		{ấ}{{\'\acircumflex }}1
+		{ầ}{{\`\acircumflex }}1
+		{ậ}{{\d \acircumflex }}1
+		{ẩ}{{\h \acircumflex }}1
+		{ẫ}{{\~\acircumflex }}1
+		%
+		{Â}{{\^ A}}1
+		{Ấ}{{\'\ACIRCUMFLEX }}1
+		{Ầ}{{\`\ACIRCUMFLEX }}1
+		{Ậ}{{\d \ACIRCUMFLEX }}1
+		{Ẩ}{{\h \ACIRCUMFLEX }}1
+		{Ẫ}{{\~\ACIRCUMFLEX }}1
+	%
+	% Vần đ
+		{đ}{{\dj }}1
+		{Đ}{{\DJ }}1
+	%
+	% Vần e
+		{é}{{\'e}}1
+		{è}{{\`e}}1
+		{ẹ}{{\d e}}1
+		{ẻ}{{\h e}}1
+		{ẽ}{{\~ e}}1
+		%
+		{É}{{\'E}}1
+		{È}{{\`E}}1
+		{Ẹ}{{\d E}}1
+		{Ẻ}{{\h E}}1
+		{Ẽ}{{\~ E}}1
+	%
+	% Vần ê
+		{ê}{{\^e}}1
+		{ế}{{\'\ecircumflex }}1
+		{ề}{{\`\ecircumflex }}1
+		{ệ}{{\d \ecircumflex }}1
+		{ể}{{\h \ecircumflex }}1
+		{ễ}{{\~\ecircumflex }}1
+		%
+		{Ê}{{\^E}}1
+		{Ế}{{\'\ECIRCUMFLEX }}1
+		{Ề}{{\`\ECIRCUMFLEX }}1
+		{Ệ}{{\d \ECIRCUMFLEX }}1
+		{Ể}{{\h \ECIRCUMFLEX }}1
+		{Ễ}{{\~\ECIRCUMFLEX }}1
+	%
+	% Vần i
+		{í}{{\'i}}1
+		{ì}{{\`\i }}1
+		{ị}{{\d i}}1
+		{ỉ}{{\h i}}1
+		{ĩ}{{\~\i }}1
+		%
+		{Í}{{\'I}}1
+		{Ì}{{\`I}}1
+		{Ị}{{\d I}}1
+		{Ỉ}{{\h I}}1
+		{Ĩ}{{\~I}}1
+	%
+	% Vần o
+		{ó}{{\'o}}1
+		{ò}{{\`o}}1
+		{ọ}{{\d o}}1
+		{ỏ}{{\h o}}1
+		{õ}{{\~o}}1
+		%
+		{Ó}{{\'O}}1
+		{Ò}{{\`O}}1
+		{Ọ}{{\d O}}1
+		{Ỏ}{{\h O}}1
+		{Õ}{{\~O}}1
+	%
+	% Vần ô
+		{ô}{{\^o}}1
+		{ố}{{\'\ocircumflex }}1
+		{ồ}{{\`\ocircumflex }}1
+		{ộ}{{\d \ocircumflex }}1
+		{ổ}{{\h \ocircumflex }}1
+		{ỗ}{{\~\ocircumflex }}1
+		%
+		{Ô}{{\^O}}1
+		{Ố}{{\'\OCIRCUMFLEX }}1
+		{Ồ}{{\`\OCIRCUMFLEX }}1
+		{Ộ}{{\d \OCIRCUMFLEX }}1
+		{Ổ}{{\h \OCIRCUMFLEX }}1
+		{Ỗ}{{\~\OCIRCUMFLEX }}1
+	%
+	% Vần ơ
+		{ơ}{{\ohorn }}1
+		{ớ}{{\'\ohorn }}1
+		{ờ}{{\`\ohorn }}1
+		{ợ}{{\d \ohorn }}1
+		{ở}{{\h \ohorn }}1
+		{ỡ}{{\~\ohorn }}1
+		%
+		{Ơ}{{\OHORN }}1
+		{Ớ}{{\'\OHORN }}1
+		{Ờ}{{\`\OHORN }}1
+		{Ợ}{{\d \OHORN }}1
+		{Ở}{{\h \OHORN }}1
+		{Ỡ}{{\~\OHORN }}1
+	%
+	% Vần u
+		{ú}{{\'u}}1
+		{ù}{{\`u}}1
+		{ụ}{{\d u}}1
+		{ủ}{{\h u}}1
+		{ũ}{{\~u}}1
+		%
+		{Ú}{{\'U}}1
+		{Ù}{{\`U}}1
+		{Ụ}{{\d U}}1
+		{Ủ}{{\h U}}1
+		{Ũ}{{\~U}}1
+	%
+	% Vần ư
+		{ư}{{\uhorn }}1
+		{ứ}{{\'\uhorn }}1
+		{ừ}{{\`\uhorn }}1
+		{ự}{{\d \uhorn }}1
+		{ử}{{\h \uhorn }}1
+		{ữ}{{\~\uhorn }}1
+		%
+		{Ư}{{\UHORN }}1
+		{Ứ}{{\'\UHORN }}1
+		{Ừ}{{\`\UHORN }}1
+		{Ự}{{\d \UHORN }}1
+		{Ử}{{\h \UHORN }}1
+		{Ữ}{{\~\UHORN }}1
+	%
+	% Vần y
+		{ý}{{\'y}}1
+		{ỳ}{{\`y}}1
+		{ỵ}{{\d y}}1
+		{ỷ}{{\h y}}1
+		{ỹ}{{\~y}}1
+		%
+		{Ý}{{\'Y}}1
+		{Ỳ}{{\`Y}}1
+		{Ỵ}{{\d Y}}1
+		{Ỷ}{{\h Y}}1
+		{Ỹ}{{\~Y}}1
+        %parentheses
+        %
+        {\{}{{\textcolor{parenthesesblue}{\{}}}{1}
+        {\}}{{\textcolor{parenthesesblue}{\}}}}{1}
+        {(}{{\textcolor{parenthesesblue}{(}}}{1}
+        {)}{{\textcolor{parenthesesblue}{)}}}{1}
+        {[}{{\textcolor{parenthesesblue}{[}}}{1}
+        {]}{{\textcolor{parenthesesblue}{]}}}{1}
+        % level 2
+        {*\{}{{\textcolor{stringgreen}{\{}}}{1}
+        {*\}}{{\textcolor{stringgreen}{\}}}}{1}
+        {*(}{{\textcolor{stringgreen}{(}}}{1}
+        {*)}{{\textcolor{stringgreen}{)}}}{1}
+        {*[}{{\textcolor{stringgreen}{[}}}{1}
+        {*]}{{\textcolor{stringgreen}{]}}}{1}
+        % level 3
+        {**\{}{{\textcolor{delimorange}{\{}}}{1}
+        {**\}}{{\textcolor{delimorange}{\}}}}{1}
+        {**(}{{\textcolor{delimorange}{(}}}{1}
+        {**)}{{\textcolor{delimorange}{)}}}{1}
+        {**[}{{\textcolor{delimorange}{[}}}{1}
+        {**]}{{\textcolor{delimorange}{]}}}{1}
+        %number
+        {1}{{\textcolor{variableorange}{1}}}{1}
+        {2}{{\textcolor{variableorange}{2}}}{1}
+        {3}{{\textcolor{variableorange}{3}}}{1}
+        {4}{{\textcolor{variableorange}{4}}}{1}
+        {5}{{\textcolor{variableorange}{5}}}{1}
+        {6}{{\textcolor{variableorange}{6}}}{1}
+        {7}{{\textcolor{variableorange}{7}}}{1}
+        {8}{{\textcolor{variableorange}{8}}}{1}
+        {9}{{\textcolor{variableorange}{9}}}{1}
+        {0}{{\textcolor{variableorange}{0}}}{1}
+}
