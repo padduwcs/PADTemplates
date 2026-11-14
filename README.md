@@ -2,17 +2,43 @@
 
 Các mẫu LaTeX dùng độc lập trên Windows, macOS và Linux.
 
-## Chuẩn bị
+## Cài nhanh
 
-Cài [VS Code](https://code.visualstudio.com/), extension **LaTeX Workshop** và bộ LaTeX:
+Chọn đúng hệ điều hành và chỉ cài phần còn thiếu. Nếu đã có bộ LaTeX đang hoạt động, dùng tiếp bộ đó.
 
-| Hệ điều hành | Cài đặt |
+**Windows — PowerShell** (cần [WinGet](https://learn.microsoft.com/windows/package-manager/winget/)):
+
+```powershell
+winget install -e --id Microsoft.VisualStudioCode --no-upgrade
+winget install -e --id MiKTeX.MiKTeX --no-upgrade
+winget install -e --id StrawberryPerl.StrawberryPerl --no-upgrade
+```
+
+Trong MiKTeX Console, cập nhật package và bật **Settings → Always install missing packages on-the-fly**. Nếu `latexmk` chưa có, cài package `latexmk` trong mục Packages.
+
+**macOS — Terminal** (cần [Homebrew](https://brew.sh/)):
+
+```sh
+brew install --cask visual-studio-code mactex
+```
+
+**Linux** — cài [VS Code](https://code.visualstudio.com/download), rồi chọn lệnh cho bản phân phối:
+
+| Bản phân phối | Cài LaTeX |
 | --- | --- |
-| Windows | [MiKTeX](https://miktex.org/download) + [Strawberry Perl](https://strawberryperl.com/) |
-| macOS | [MacTeX](https://tug.org/mactex/) |
-| Linux | [TeX Live](https://tug.org/texlive/quickinstall.html), bản đầy đủ |
+| Ubuntu / Debian | `sudo apt update` rồi `sudo apt install texlive-full` |
+| Fedora | `sudo dnf install texlive-scheme-full latexmk` |
+| Arch Linux | `sudo pacman -Syu --needed texlive texlive-langother` |
 
-Đã có công cụ thì dùng tiếp, chỉ bổ sung phần thiếu. Với MiKTeX, bật tự cài package thiếu. Mở lại VS Code sau khi cài.
+Linux khác: dùng [TeX Live](https://tug.org/texlive/quickinstall.html). Bản đầy đủ trên macOS/Linux cần vài GB dung lượng.
+
+**Sau khi cài**, mở lại VS Code và terminal, rồi cài extension:
+
+```sh
+code --install-extension james-yu.latex-workshop
+```
+
+Nếu không có lệnh `code`, tìm **LaTeX Workshop** của James Yu trong Extensions của VS Code. Kiểm tra bộ LaTeX bằng `latexmk -v`.
 
 ## Chọn mẫu
 
