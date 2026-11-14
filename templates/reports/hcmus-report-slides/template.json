@@ -1,9 +1,0 @@
-{
-  "id": "hcmus-report-slides",
-  "name": "Báo cáo và slide HCMUS",
-  "description": "Báo cáo và slide Beamer 16:9 dùng chung thông tin môn học và nhóm.",
-  "category": "reports",
-  "language": "vi",
-  "engine": "pdflatex",
-  "entrypoints": ["main.tex", "slides.tex"]
-}

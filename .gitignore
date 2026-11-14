@@ -1,34 +1,4 @@
-# Build output, including any template added later.
 build/
-
-# Personal documents and local migration backups.
 /projects/
-/.local/
-
-# LaTeX auxiliary files created by an alternate build command.
-*.aux
-*.bbl
-*.bcf
-*.blg
-*.fdb_latexmk
-*.fls
-*.lof
-*.log
-*.lot
-*.nav
-*.out
-*.run.xml
-*.snm
-*.synctex.gz
-*.synctex(busy)
-*.toc
-*.vrb
-*.xdv
-
-# Editor and operating-system temporary files.
-*.swp
-*.swo
-*~
 .DS_Store
 Thumbs.db
-Desktop.ini

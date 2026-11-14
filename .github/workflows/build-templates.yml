@@ -1,18 +1,6 @@
 name: Build templates
 
-on:
-  push:
-    branches: [main]
-    paths:
-      - "templates/**"
-      - "scripts/**"
-      - ".github/workflows/build-templates.yml"
-  pull_request:
-    paths:
-      - "templates/**"
-      - "scripts/**"
-      - ".github/workflows/build-templates.yml"
-  workflow_dispatch:
+on: [push, pull_request, workflow_dispatch]
 
 permissions:
   contents: read
@@ -33,14 +21,20 @@ jobs:
             texlive-science texlive-publishers texlive-fonts-recommended \
             texlive-fonts-extra
 
-      - name: Build every registered document
-        shell: pwsh
-        run: ./scripts/build-all.ps1
+      - name: Build templates
+        run: |
+          for template in templates/*/; do
+            (
+              cd "$template"
+              latexmk main.tex
+              if [ -f slides.tex ]; then latexmk slides.tex; fi
+            )
+          done
 
       - name: Upload PDF previews
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: template-pdfs
-          path: templates/**/build/*.pdf
+          path: templates/*/build/*.pdf
           if-no-files-found: error
           retention-days: 14

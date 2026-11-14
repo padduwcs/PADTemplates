@@ -1,9 +1,0 @@
-{
-  "id": "springer-lncs",
-  "name": "Bài báo Springer LNCS",
-  "description": "Bài báo tiếng Anh dùng class llncs và tài liệu tham khảo splncs04.",
-  "category": "papers",
-  "language": "en",
-  "engine": "pdflatex",
-  "entrypoints": ["main.tex"]
-}

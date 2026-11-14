@@ -1,10 +1,10 @@
 # LaTeX Templates
 
-Các mẫu báo cáo, slide và bài báo. Chọn mẫu, sửa nội dung và xuất PDF trên Windows, macOS hoặc Linux.
+Các mẫu LaTeX dùng độc lập trên Windows, macOS và Linux.
 
 ## Chuẩn bị
 
-Cài [VS Code](https://code.visualstudio.com/) và extension **LaTeX Workshop** của James Yu. Sau đó cài bộ LaTeX theo hệ điều hành:
+Cài [VS Code](https://code.visualstudio.com/), extension **LaTeX Workshop** và bộ LaTeX:
 
 | Hệ điều hành | Cài đặt |
 | --- | --- |
@@ -12,31 +12,32 @@ Cài [VS Code](https://code.visualstudio.com/) và extension **LaTeX Workshop** 
 | macOS | [MacTeX](https://tug.org/mactex/) |
 | Linux | [TeX Live](https://tug.org/texlive/quickinstall.html), bản đầy đủ |
 
-**Đã có công cụ thì dùng tiếp, chỉ cài phần thiếu.** Có MiKTeX hoặc TeX Live đang hoạt động thì dùng bộ hiện tại; nếu `latexmk -v` chạy được thì không cần cài Perl riêng. Với MiKTeX, bật tự cài package thiếu trong MiKTeX Console. Mở lại VS Code sau khi cài.
+Đã có công cụ thì dùng tiếp, chỉ bổ sung phần thiếu. Với MiKTeX, bật tự cài package thiếu. Mở lại VS Code sau khi cài.
 
 ## Chọn mẫu
 
 | Mẫu | Dùng cho |
 | --- | --- |
-| [hcmus-course-report](templates/reports/hcmus-course-report/) | Báo cáo môn học tiếng Việt |
-| [hcmus-report-slides](templates/reports/hcmus-report-slides/) | Báo cáo tiếng Việt kèm slide |
-| [springer-lncs](templates/papers/springer-lncs/) | Bài báo tiếng Anh theo mẫu LNCS |
+| [hcmus-course-report](templates/hcmus-course-report/) | Báo cáo môn học tiếng Việt |
+| [hcmus-report-slides](templates/hcmus-report-slides/) | Báo cáo tiếng Việt kèm slide |
+| [springer-lncs](templates/springer-lncs/) | Bài báo tiếng Anh theo mẫu LNCS |
 
 ## Bắt đầu
 
-1. Clone repo hoặc tải ZIP.
-2. Sao chép **cả thư mục mẫu** muốn dùng ra nơi làm bài riêng, giữ cả `.vscode` và `latexmkrc`.
-3. Mở thư mục vừa sao chép trong VS Code. Sửa thông tin và nội dung theo README của mẫu.
-4. Lưu file, chọn `main.tex`, nhấn **Ctrl + Alt + B** để build, rồi **Ctrl + Alt + V** để xem PDF. Trên macOS dùng **Cmd + Option + B / V**.
+1. Clone hoặc tải ZIP, rồi sao chép **cả thư mục mẫu** ra nơi làm bài riêng.
+2. Mở thư mục đó trong VS Code, sửa nội dung theo README của mẫu.
+3. Lưu, chọn `main.tex`: **Ctrl + Alt + B** để build, **Ctrl + Alt + V** để xem PDF. macOS dùng **Cmd + Option + B / V**.
 
-Hoặc dùng terminal tại thư mục bài làm, với editor bất kỳ:
+Hoặc chạy trong terminal tại thư mục bài làm:
 
 ```sh
 latexmk main.tex
 ```
 
-PDF nằm trong **`build/main.pdf`**. Với slide, chọn `slides.tex` hoặc chạy `latexmk slides.tex`; PDF là `build/slides.pdf`. Mỗi lần sửa, lưu và build lại để cập nhật PDF.
+PDF ở `build/main.pdf`. Slide: `latexmk slides.tex` → `build/slides.pdf`. Sau mỗi lần sửa, lưu và build lại.
 
-Xem thêm: [cài đặt chi tiết](docs/installation.md) · [khắc phục lỗi](docs/troubleshooting.md) · [thêm template](CONTRIBUTING.md).
+Thêm mẫu: tạo thư mục trong `templates/` có `main.tex`, `latexmkrc`, `.vscode/` và README ngắn; thêm vào bảng trên. Có thể sao chép một mẫu sẵn có để bắt đầu.
 
-[MIT](LICENSE) cho phần do người đóng góp sở hữu; xem [NOTICE](NOTICE.md) cho thành phần bên thứ ba.
+Thiếu lệnh: kiểm tra đã cài bộ LaTeX và mở lại VS Code. Thiếu package: cài bằng trình quản lý của bộ LaTeX đang dùng.
+
+[MIT](LICENSE) cho phần do người đóng góp sở hữu. Logo, class, package và tài nguyên bên thứ ba giữ quyền và giấy phép riêng.
